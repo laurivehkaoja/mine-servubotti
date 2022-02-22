@@ -4,5 +4,5 @@ Discord.py-moduulilla kirjoitettu botti, joka auttaa Minecraft-serverin pyöritt
 # TODO
 - Muuta getip-koodinpätkä metodiksi
 - Vaihda komennot omaan tiedostoon
-- Automatisoi serverin tilan katsominen
+- Automatisoi serverin tilan katsominen ja muuttaminen
 - Kirjoita botista oma luokka
