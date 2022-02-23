@@ -14,37 +14,41 @@ request = session.get(url)
 request.html.render(sleep=1, keep_page=True, scrolldown=1)
 site_data = request.html.find("a") # Etsitään se osa sivun lähdekoodista, jossa IP-osoite on
 
-# Haetaan IP-osoite lähdekoodista
-for item in site_data:
-    ip = {
-        "tcp": item.text
-    }
-
-# Muutetaan IP-osoite merkkijonoksi, jotta sitä voidaan käsitellä
-ip = str(ip["tcp"])
-
 # Minecraft-serverin tilaa kontrolloiva muuttuja
 server_status = "online"
+
+# Metodit
+def get_ip():
+    for item in site_data:
+        raw_ip = {
+            "tcp": item.text
+        }
+    return raw_ip
+
+def format_ip():
+    ip = get_ip()
+    ip = str(ip["tcp"])
+    return ip[6:38]
 
 # Ladataan botin tokeni .env-tiedostosta
 load_dotenv()
 
+# Määritetään botin prefixiski huutomerkki
 client = commands.Bot(command_prefix="!")
 
-def get_ip():
-    pass
 
 @client.event
 async def on_ready():
     print(f"Botti on onlinessa!")
 
 @client.command()
-async def set_status():
-    pass
+async def set_status(ctx):
+        pass
 
 @client.command()
-async def getip(ctx):
-    await ctx.send(f"IP: {ip[6:38]}")
+async def ip(ctx):
+    ip = format_ip()
+    await ctx.send(f"IP: {ip}")
     return
 
 @client.command()
